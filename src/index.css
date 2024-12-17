@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --caveat: "Caveat", cursive;
+  --monrope: "Manrope", sans-serif;
+  --bebas: "Bebas Neue", sans-serif;
+  --bg: linear-gradient(30deg, #190b1f, #2b1c3a, #2b1c3a);
+  --bg2: linear-gradient(30deg, #aaa, #eee);
+  --angle: 0deg;
+}
+
+.screen {
+  background: var(--bg);
+}
+
+.info {
+  background: var(--bg2);
+  font-family: var(--monrope);
+  font-weight: 500;
+  color: #190b1f;
+}
+
+.main {
+  background: var(--bg2);
+  color: #2b1c3a;
+  animation: rotate 2s linear infinite, move 5s ease-in-out infinite;
+  position: relative;
+}
+
+.main::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: conic-gradient(
+    from var(--angle),
+    #f3f98a1f,
+    #e698c31f,
+    #c314fd1f,
+    #c314fd1f,
+    #e698c31f,
+    #f3f98a1f
+  );
+  animation: rotate 5s linear infinite;
+  pointer-events: none;
+}
+
+.main::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  height: 100%;
+  width: 100%;
+  background: conic-gradient(
+    from var(--angle),
+    #f3f98a1f,
+    #e698c31f,
+    #c314fd1f,
+    #c314fd1f,
+    #e698c31f,
+    #f3f98a1f
+  );
+  filter: blur(11.5rem);
+  z-index: -1;
+  padding: 3px;
+}
+
+.main > * {
+  transition-duration: 2s;
+  animation: move 5s ease-in-out infinite both;
+}
+
+.main > *:hover {
+  translate: 0 -5px;
+  transition-duration: 0.5s;
+}
+
+@keyframes move {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -10px;
+  }
+}
+
+@keyframes rotate {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.name {
+  font-family: var(--caveat);
+  animation-delay: 1s;
+}
+
+.name img {
+  border-radius: 50%;
+  box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.4);
+}
+
+.email {
+  font-family: var(--bebas);
+  animation-delay: 2s;
+}
+
+.location {
+  font-family: var(--monrope);
+  animation-delay: 3s;
+}
+
+.button {
+  animation-delay: 4s;
+}
+
+.button button {
+  background-color: #2b1c3a;
+  color: white;
+  width: fit-content;
+  border-radius: 0.5rem;
+  font-family: var(--monrope);
+  font-weight: bold;
+}
+
+button:hover {
+  translate: 0 -3px;
+  transition-duration: 0.5s;
+}
+
+button:focus {
+  outline: none;
+  border: none;
+}
+
+*::selection {
+  background-color: #00000030;
+}
